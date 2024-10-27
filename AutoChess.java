@@ -18,6 +18,17 @@ public class AutoChess extends JFrame {
     private boolean kingsPlaced = false;
     private Color grayYellowColor = new Color(190, 190, 100);
     private Color lightYellowColor = new Color(255, 255, 127);
+    private ChessFenConverter converter = new ChessFenConverter();
+    private String[][] FenBoard = {
+        {"", "", "", "", "", "", "", ""},
+        {"", "", "", "", "", "", "", ""},
+        {"", "", "", "", "", "", "", ""},
+        {"", "", "", "", "", "", "", ""},
+        {"", "", "", "", "", "", "", ""},
+        {"", "", "", "", "", "", "", ""},
+        {"", "", "", "", "", "", "", ""},
+        {"", "", "", "", "", "", "", ""},
+    };
 
     public AutoChess() {
         setTitle("AutoChess");
@@ -70,6 +81,7 @@ public class AutoChess extends JFrame {
                             System.out.println("Square clicked: " + square.row + ", " + square.col);
                             /////////////////
                             square.setIcon(new ImageIcon("smallFigures/" + selectedButton.figurePath));
+                            FenBoard[square.row][square.col] = selectedButton.getFenString();
                             selectPanel.UpdateLabels(selectedButton.color, selectedButton.price);                           
                             selectedButton.DeselectFigure();
 

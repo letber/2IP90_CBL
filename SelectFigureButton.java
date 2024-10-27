@@ -40,4 +40,13 @@ public class SelectFigureButton extends JButton {
         selected = false;
         setBackground(null);
     }
+
+    public String getFenString() {
+        String firsString = figure.split("")[0];
+        if (color.equals("w")) {
+            return firsString.toUpperCase();
+        } else {
+            return firsString;
+        }
+    }
 }
