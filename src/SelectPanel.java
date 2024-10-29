@@ -6,8 +6,8 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class SelectPanel extends JPanel {
-    public int white_score = 10;
-    public int black_score = 10;
+    public int white_score = 35;
+    public int black_score = 35;
     public HashMap<String, SelectFigureButton> Figures = new HashMap<String,SelectFigureButton>(){    };
     private Dimension ButtonSize = new Dimension(50, 50);
     private JLabel whiteScoreLabel = new JLabel("White Score: " + white_score);
