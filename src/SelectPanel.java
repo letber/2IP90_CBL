@@ -66,6 +66,13 @@ public class SelectPanel extends JPanel {
         }
     }
 
+    public void ResetLabels() {
+        white_score = 35;
+        black_score = 35;
+        whiteScoreLabel.setText("White Score: " + white_score);
+        blackScoreLabel.setText("Black Score: " + black_score);
+    }
+
     private void AddFigure(String path, JPanel Panel, int score) {
         SelectFigureButton Button = new SelectFigureButton(score, path);
         Button.setPreferredSize(ButtonSize);

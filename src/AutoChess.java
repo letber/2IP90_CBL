@@ -12,6 +12,7 @@ public class AutoChess extends JFrame {
 
     private static final int BOARD_SIZE = 8; // Adjust for custom board sizes
 
+    private static JFrame window;
     private JPanel chessBoard;
     private SelectPanel selectPanel;
     private SquareButton[][] squares;
@@ -283,15 +284,19 @@ public class AutoChess extends JFrame {
 
                     // System.out.println("Best move: " + bestMove);
                     String[] move = bestMove.split("");
-
+                    String promotion = "";
                     int fromRow = Integer.parseInt(move[1]) - 1;
                     int fromCol = move[0].charAt(0) - 'a';
                     int toRow = Integer.parseInt(move[3]) - 1;
                     int toCol = move[2].charAt(0) - 'a';
-                    // System.out.println("From: " + fromRow + ", " + fromCol);
-                    // System.out.println("To: " + toRow + ", " + toCol);
-                    // System.out.println("Moved figure: " + FenBoard[7 - fromRow][fromCol]);
-                    movedFigure = ChessFenConverter.FigureFENtoString(FenBoard[7 - fromRow][fromCol]);
+                    if (move.length == 5){
+                        promotion = move[4];
+                    }
+                    if (promotion != ""){
+                        movedFigure = ChessFenConverter.FigureFENtoString(promotion);
+                    } else {
+                        movedFigure = ChessFenConverter.FigureFENtoString(FenBoard[7 - fromRow][fromCol]);
+                    }
                     movedFromSquare = squares[7 - fromRow][fromCol];
                     movedToSquare  = squares[7 - toRow][toCol];
 
@@ -332,10 +337,6 @@ public class AutoChess extends JFrame {
             endingLabelElement.setText(endingLabel);
             EndGame();
         }).start();
-
-        // selectPanel.UpdateLabels("black", 0);
-        // selectPanel.UpdateLabels("white", 0);
-        // PlaceFigures();
     }
 
     private void EndGame(){
@@ -343,45 +344,10 @@ public class AutoChess extends JFrame {
 
         restart.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                selectPanel.UpdateLabels("w", -35);
-                // selectPanel.UpdateLabels("b", -35);
-                stockfish.gameFinished = false;
-
-                for (int row = 0; row < BOARD_SIZE; row++) {
-                    for (int col = 0; col < BOARD_SIZE; col++) {
-                        SquareButton square = squares[row][col];
-                        square.setIcon(new ImageIcon());
-                        square.setBackground(square.defaultColor);
-                    }
-                }
-
-                turn = "white";
-                selectedButton = null;
-                kingsPlaced = false;
-                FenBoard = new String[][] {
-                    {"", "", "", "", "", "", "", ""},
-                    {"", "", "", "", "", "", "", ""},
-                    {"", "", "", "", "", "", "", ""},
-                    {"", "", "", "", "", "", "", ""},
-                    {"", "", "", "", "", "", "", ""},
-                    {"", "", "", "", "", "", "", ""},
-                    {"", "", "", "", "", "", "", ""},
-                    {"", "", "", "", "", "", "", ""},
-                };
-                movedFigure = null;
-                movedFromSquare = null;
-                movedToSquare = null;
-                lastMoveFromButton = null;
-                lastMoveToButton = null;
-                playedFens = new ArrayList<String>();
-                endingLabel = "";
-                lastTurn = "";
-                restart.setEnabled(false);
-                endingLabelElement.setText("");
-                selectPanel.EnableWhiteFigures();
+                window.dispose();
+                window = new AutoChess();
             }
         });
-        
     }
 
     public static boolean containsFigure(String[][] jaggedArray, String target) {
@@ -397,7 +363,7 @@ public class AutoChess extends JFrame {
 
     public static void main(String[] args) {
         SwingUtilities.invokeLater(() -> {
-            new AutoChess();
+            window = new AutoChess();
         });
     }
 }
