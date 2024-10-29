@@ -104,7 +104,7 @@ public class AutoChess extends JFrame {
                     public void actionPerformed(ActionEvent e) {
                         if (selectedButton != null && FenBoard[square.row][square.col] == "") {
                             /////////////////
-                            System.out.println("Square clicked: " + square.row + ", " + square.col);
+                            // System.out.println("Square clicked: " + square.row + ", " + square.col);
                             /////////////////
                             square.setIcon(new ImageIcon("smallFigures/" + selectedButton.figurePath));
                             FenBoard[square.row][square.col] = selectedButton.getFenString();
@@ -116,7 +116,7 @@ public class AutoChess extends JFrame {
                                 if (containsFigure(FenBoard, "k") && containsFigure(FenBoard, "K")){
                                     kingsPlaced = true;
                                     turn = "";
-                                    System.out.println("Launching Stockfish");
+                                    // System.out.println("Launching Stockfish");
                                     selectPanel.DisableBlackFigures();
                                     selectedButton = null;
                                     EnableAllSquares(true);
@@ -132,7 +132,7 @@ public class AutoChess extends JFrame {
                                 if (containsFigure(FenBoard, "k") && containsFigure(FenBoard, "K")){
                                     kingsPlaced = true;
                                     turn = "";
-                                    System.out.println("Launching Stockfish");
+                                    // System.out.println("Launching Stockfish");
                                     selectPanel.DisableBlackFigures();
                                     selectedButton = null;
                                     EnableAllSquares(true);
@@ -146,7 +146,7 @@ public class AutoChess extends JFrame {
                                 }
                                 
                             } else {
-                                System.out.println("Launching Stockfish");
+                                // System.out.println("Launching Stockfish");
                                 selectPanel.DisableBlackFigures();
                                 selectedButton = null;
                                 EnableAllSquares(true);
@@ -266,36 +266,30 @@ public class AutoChess extends JFrame {
                 playedFens.add(fen);
                 int occurence = Collections.frequency(playedFens, fen);
                 if (occurence >= 3){
-                    System.out.println("Draw by repetition");
+                    // System.out.println("Draw by repetition");
                     endingLabel = "Draw by repetition";
                     break;
                 }
-                System.out.println("FEN: " + fen);
+                // System.out.println("FEN: " + fen);
 
                 if (stockfishPath != null && stockfish.startStockfish(stockfishPath)) {
                     String bestMove = stockfish.getBestMove(fen, 1000);
                     if (bestMove == null){
-                        System.out.println("Draw by insufficient material");
+                        // System.out.println("Draw by insufficient material");
                         endingLabel = "Game Over: Chekmate by " + turn;
                         break;
                     }
 
-                    System.out.println("Best move: " + bestMove);
+                    // System.out.println("Best move: " + bestMove);
                     String[] move = bestMove.split("");
 
                     int fromRow = Integer.parseInt(move[1]) - 1;
                     int fromCol = move[0].charAt(0) - 'a';
                     int toRow = Integer.parseInt(move[3]) - 1;
                     int toCol = move[2].charAt(0) - 'a';
-                    System.out.println("From: " + fromRow + ", " + fromCol);
-                    System.out.println("To: " + toRow + ", " + toCol);
-
-                    // SwingUtilities.invokeLater(() -> {
-                    //     movedFromSquare.setBackground(movedFromSquare.defaultColor);
-                    //     movedToSquare.setBackground(movedToSquare.defaultColor);
-                    // });
-                    
-                    System.out.println("Moved figure: " + FenBoard[7 - fromRow][fromCol]);
+                    // System.out.println("From: " + fromRow + ", " + fromCol);
+                    // System.out.println("To: " + toRow + ", " + toCol);
+                    // System.out.println("Moved figure: " + FenBoard[7 - fromRow][fromCol]);
                     movedFigure = ChessFenConverter.FigureFENtoString(FenBoard[7 - fromRow][fromCol]);
                     movedFromSquare = squares[7 - fromRow][fromCol];
                     movedToSquare  = squares[7 - toRow][toCol];

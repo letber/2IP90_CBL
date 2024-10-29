@@ -15,13 +15,11 @@ public class SelectPanel extends JPanel {
     public SelectPanel() {
         // Frame setup
         setSize(600, 600);
-        // setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        // setLocationRelativeTo(null);
 
         // Main panel with BorderLayout
         JPanel mainPanel = new JPanel(new BorderLayout());
 
-        // Create top and bottom button panels with margin
+        // top and bottom button panels with margin
         JPanel topButtonPanel = new JPanel();
         topButtonPanel.setBorder(BorderFactory.createEmptyBorder(10, 0, 10, 0)); // Add margin
 
@@ -44,19 +42,17 @@ public class SelectPanel extends JPanel {
         AddFigure("b_pawn.png", bottomButtonPanel, 1);
 
 
-        // Add top and bottom button panels to the main panel
         mainPanel.add(topButtonPanel, BorderLayout.NORTH);  // Top button
         mainPanel.add(bottomButtonPanel, BorderLayout.SOUTH);  // Bottom button
 
-        // Optionally, add some content in the center
         JPanel centerPanel = new JPanel();
         centerPanel.add(whiteScoreLabel);
         centerPanel.add(blackScoreLabel);
         centerPanel.setBackground(Color.LIGHT_GRAY);
-        mainPanel.add(centerPanel, BorderLayout.CENTER);  // Center panel for additional content
+        mainPanel.add(centerPanel, BorderLayout.CENTER); 
 
-        // Add main panel to the frame
         add(mainPanel);
+        add (new ChessRulesPanel());
     }
 
     public void UpdateLabels(String color, int price) {

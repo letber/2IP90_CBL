@@ -55,17 +55,4 @@ public class ChessFenConverter {
     public static String FigureFENtoString(String figureFen){
         return figureFenMap.get(figureFen);
     }
-
-    public static void main(String[] args) {
-        String[][] board = {
-            {"r", "n", "b", "q", "k", "b", "n", "r"},
-            {"p", "p", "p", "p", "p", "p", "p", "p"},
-            {"", "", "", "", "", "", "", ""},
-            {"", "", "", "", "", "", "", ""},
-            {"", "", "", "", "", "", "", ""},
-            {"", "", "", "", "", "", "", ""},
-            {"P", "P", "P", "P", "P", "P", "P", "P"},
-            {"R", "N", "B", "Q", "K", "B", "N", "R"}
-        };
-    }
 }

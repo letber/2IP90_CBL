@@ -16,7 +16,6 @@ public class StockfishClient {
 
         String stockfishPath = client.setupStockfishExecutable();
         if (stockfishPath != null && client.startStockfish(stockfishPath)) {
-            // Example: Get best move for a given position in FEN notation
             // String fen = "r1bqkbnr/pppppppp/n7/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1"; // Example position
             String fen = "3k4/2kkk3/4p3/8/8/4P3/2KKK3/3K4 w KQkq - 0 1";
             System.out.println(fen);
