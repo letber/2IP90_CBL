@@ -23,15 +23,11 @@ public class SelectFigureButton extends JButton {
     }
 
     public void onSquareClicked() {
-        // Handle square click events here
-        // Implement custom logic for selecting and moving pieces
         SelectFigureButton();
     }
 
     private void SelectFigureButton() {
-        // Handle square click events here
-        // Implement custom logic for selecting and moving pieces
-        System.out.println("Figure selected: " + price);
+        // System.out.println("Figure selected: " + price);
         selected = true;
         setBackground(Color.GREEN);
     }

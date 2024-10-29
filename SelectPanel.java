@@ -5,8 +5,8 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class SelectPanel extends JPanel {
-    public int white_score = 7;
-    public int black_score = 7;
+    public int white_score = 10;
+    public int black_score = 10;
     public HashMap<String, SelectFigureButton> Figures = new HashMap<String,SelectFigureButton>(){    };
     private Dimension ButtonSize = new Dimension(50, 50);
     private JLabel whiteScoreLabel = new JLabel("White Score: " + white_score);
@@ -29,7 +29,7 @@ public class SelectPanel extends JPanel {
         AddFigure("w_queen.png", topButtonPanel, 7);
         AddFigure("w_rook.png", topButtonPanel, 5);
         AddFigure("w_bishop.png", topButtonPanel, 3);
-        AddFigure("w_knight.png", topButtonPanel, 3);
+        AddFigure("w_night.png", topButtonPanel, 3);
         AddFigure("w_pawn.png", topButtonPanel, 1);
 
 
@@ -40,7 +40,7 @@ public class SelectPanel extends JPanel {
         AddFigure("b_queen.png", bottomButtonPanel, 7);
         AddFigure("b_rook.png", bottomButtonPanel, 5);
         AddFigure("b_bishop.png", bottomButtonPanel, 3);
-        AddFigure("b_knight.png", bottomButtonPanel, 3);
+        AddFigure("b_night.png", bottomButtonPanel, 3);
         AddFigure("b_pawn.png", bottomButtonPanel, 1);
 
 
